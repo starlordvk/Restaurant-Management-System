@@ -8,14 +8,25 @@
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+<link href="StyleSheet.css" rel="stylesheet" />
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Label ID="Label1" runat="server" Text="Restaurant Management System"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Restaurant Management System" Font-Size="XX-Large" CssClass="Header"></asp:Label>
         <br />
+        <br />
+        <asp:Menu ID="NavigationMenu" runat="server" CssClass="" EnableViewState="false" IncludeStyleBlock="true" Orientation="Horizontal" Font-Size="X-Large">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/HomePage.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/OrderPage.aspx" Text="Order"/>
+                        <asp:MenuItem NavigateUrl="~/BillsPage.aspx" Text="Bills" />
+                       
+                        
+                    </Items>
+          </asp:Menu>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
-        <asp:Label ID="Label2" runat="server" Text="Date"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Date" Font-Size="Medium" CssClass="Footer"></asp:Label>
     </div>
     </form>
 </body>

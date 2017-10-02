@@ -5,10 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="~/StyleSheets/LoginPageStyleSheet.css" rel="stylesheet" type="text/css"  />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="LoginClass">
         <div>
+            <!--Label for Administrator Login -->
+            <asp:Label runat="server" Text="Adminstrator Login"></asp:Label>
+            <br /><br />
             <!-- Label and TextBox for Username -->
             <asp:Label runat="server" Text="Username: "></asp:Label>
             <asp:TextBox runat="server" ID="username_tb"></asp:TextBox>

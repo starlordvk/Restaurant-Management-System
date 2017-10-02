@@ -9,7 +9,6 @@ public partial class RMSMaster : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Label2.Text = DateTime.Today.ToString("dd/MM/yyyy")+" "+DateTime.Now.ToString("h:mm:ss tt");
-
+        //label2.Text = DateTime.Today.ToString("dd/MM/yyyy")+" "+DateTime.Now.ToString("h:mm:ss tt");
     }
 }

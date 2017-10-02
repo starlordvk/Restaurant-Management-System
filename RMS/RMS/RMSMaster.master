@@ -7,8 +7,8 @@
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link href="~/StyleSheets/MasterStyleSheet.css" rel="stylesheet" />
 </head>
-<link href="StyleSheet.css" rel="stylesheet" />
 <body>
     <form id="form1" runat="server">
     <div>
@@ -20,13 +20,11 @@
                         <asp:MenuItem NavigateUrl="~/HomePage.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/OrderPage.aspx" Text="Order"/>
                         <asp:MenuItem NavigateUrl="~/BillsPage.aspx" Text="Bills" />
-                       
-                        
                     </Items>
           </asp:Menu>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
-        <asp:Label ID="Label2" runat="server" Text="Date" Font-Size="Medium" CssClass="Footer"></asp:Label>
+       <!-- <asp:Label runat="server" ID="label2" Text="Date" Font-Size="Medium" CssClass="Footer"></asp:Label> -->
     </div>
     </form>
 </body>

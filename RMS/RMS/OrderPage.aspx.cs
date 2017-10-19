@@ -10,6 +10,8 @@ using System.Configuration;
 
 public partial class OrderPage : System.Web.UI.Page
 {
+    Dictionary<string, int> itemOrdered=new Dictionary<string, int>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -43,12 +45,14 @@ public partial class OrderPage : System.Web.UI.Page
         foreach(GridViewRow row in GridView1.Rows)
         {
             CheckBox cb = (CheckBox)row.FindControl("SelectItem");
+            
             if (cb.Checked)
             {
 
                 TextBox tb = (TextBox)row.FindControl("SelectedItemQuantity");
                 int quantity;
                 int.TryParse(tb.Text, out quantity);
+                
                 int price;
                 int.TryParse(row.Cells[2].Text, out price);
                 orderAmount += quantity * price;
@@ -65,7 +69,7 @@ public partial class OrderPage : System.Web.UI.Page
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);
         
         //Command object for insertion in order table for a newly generated id
-        SqlCommand cmd= new SqlCommand("Insert into Order(OrderId, Date, Amount, Complete) values(@Id, @date, @amount, @complete)",con);
+        SqlCommand cmd= new SqlCommand("Insert into [Order] (OrderId, Date, Amount, Complete) values(@Id, @date, @amount, @complete)",con);
         cmd.Parameters.AddWithValue("@Id", OrderId);
         cmd.Parameters.AddWithValue("@date", dt);
         cmd.Parameters.AddWithValue("@amount", orderAmount);

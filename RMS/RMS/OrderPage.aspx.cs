@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 public partial class OrderPage : System.Web.UI.Page
 {
@@ -59,11 +60,32 @@ public partial class OrderPage : System.Web.UI.Page
         string OrderId = 'o'+RandomDigits(4);
         DateTime dt = DateTime.Today;
         int Complete = 1;
-        SqlConnection con = new SqlConnection();
 
-       
+        //Connection object
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);
         
-        
+        //Command object for insertion in order table for a newly generated id
+        SqlCommand cmd= new SqlCommand("Insert into Order(OrderId, Date, Amount, Complete) values(@Id, @date, @amount, @complete)",con);
+        cmd.Parameters.AddWithValue("@Id", OrderId);
+        cmd.Parameters.AddWithValue("@date", dt);
+        cmd.Parameters.AddWithValue("@amount", orderAmount);
+        cmd.Parameters.AddWithValue("@complete", Complete);
+
+        try
+        {
+            using (con)
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        catch(Exception ex)
+        {
+            Label1.Text = ex.Message;
+        }
+
+
+
     }
 
     public string RandomDigits(int length)

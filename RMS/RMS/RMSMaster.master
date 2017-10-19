@@ -24,7 +24,7 @@
           </asp:Menu>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
-       <!-- <asp:Label runat="server" ID="label2" Text="Date" Font-Size="Medium" CssClass="Footer"></asp:Label> -->
+        <asp:Label runat="server" ID="label2" Text="Date" Font-Size="Medium" CssClass="Footer"></asp:Label> 
     </div>
     </form>
 </body>

@@ -48,17 +48,19 @@ public partial class OrderPage : System.Web.UI.Page
             
             if (cb.Checked)
             {
-
+                
                 TextBox tb = (TextBox)row.FindControl("SelectedItemQuantity");
                 int quantity;
                 int.TryParse(tb.Text, out quantity);
-                
+                itemOrdered.Add(row.Cells[0].Text, quantity);
                 int price;
                 int.TryParse(row.Cells[2].Text, out price);
                 orderAmount += quantity * price;
 
             }
         }
+        GridView2.DataSource = itemOrdered;
+        this.DataBind();
 
         //Generate random order Id
         string OrderId = 'o'+RandomDigits(4);
@@ -92,6 +94,7 @@ public partial class OrderPage : System.Web.UI.Page
 
     }
 
+    //Generating random OrderId
     public string RandomDigits(int length)
     {
         var random = new Random();

@@ -25,7 +25,9 @@
     </asp:GridView>
     <br />
     <asp:Button ID="PlaceOrderButton" runat="server" Text="Place Order" OnClick="PlaceOrderButton_Click" />
-    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+    <br />
+    <asp:GridView ID="GridView2" runat="server"></asp:GridView>
+  
     
 </asp:Content>
 

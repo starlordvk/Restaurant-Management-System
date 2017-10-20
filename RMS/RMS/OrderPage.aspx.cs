@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.Text;
 
 public partial class OrderPage : System.Web.UI.Page
 {
@@ -52,6 +53,8 @@ public partial class OrderPage : System.Web.UI.Page
                 TextBox tb = (TextBox)row.FindControl("SelectedItemQuantity");
                 int quantity;
                 int.TryParse(tb.Text, out quantity);
+                
+                //Adding Itemcode and quantity
                 itemOrdered.Add(row.Cells[0].Text, quantity);
                 int price;
                 int.TryParse(row.Cells[2].Text, out price);
@@ -90,9 +93,33 @@ public partial class OrderPage : System.Web.UI.Page
             Label1.Text = ex.Message;
         }
 
+       //Inserting Items wrt and order in the order_items table
+        foreach (KeyValuePair<string,int> item in itemOrdered)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);
 
+            cmd = new SqlCommand("Insert into [Order_Items] (OrderId, ItemCode, Quantity) values (@OrderId, @ItemCode, @Quantity)", conn);
+            cmd.Parameters.AddWithValue("@OrderId", OrderId);
+            cmd.Parameters.AddWithValue("@ItemCode", item.Key);
+            cmd.Parameters.AddWithValue("@Quantity", item.Value);
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Label1.Text = ex.Message;
+            }
+
+
+        }
 
     }
+    
 
     //Generating random OrderId
     public string RandomDigits(int length)

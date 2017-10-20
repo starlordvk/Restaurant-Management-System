@@ -11,4 +11,14 @@ public partial class BillsPage : System.Web.UI.Page
     {
 
     }
+
+    protected void SqlDataSource2_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+    {
+        Console.WriteLine("Selecting");
+    }
+
+    protected void SqlDataSource2_Selected(object sender, SqlDataSourceStatusEventArgs e)
+    {
+        Console.WriteLine("Selected");
+    }
 }

@@ -5,7 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:Label ID="Label1" runat="server" Text="Welcome to order page"></asp:Label>
     <br />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ProviderName="System.Data.SqlClient" SelectCommand="Select * from Items" UpdateCommand="Update Items set Price=@Price where ItemCode=@ItemCode"
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ProviderName="System.Data.SqlClient" SelectCommand="Select * from Items" 
+        UpdateCommand="Update Items set Price=@Price where ItemCode=@ItemCode"
         ConnectionString="<%$ConnectionStrings:Restaurant %>"></asp:SqlDataSource>
 
     <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="ItemCode" EnablePersistedSelection="true" 
@@ -19,6 +20,7 @@
             <asp:TemplateField HeaderText="Select" >
                 <ItemTemplate>
                     <asp:CheckBox ID="SelectItem" runat="server" AutoPostBack="true" OnCheckedChanged="SelectItem_CheckedChanged"/>
+                   
                     <asp:TextBox ID="SelectedItemQuantity" runat="server" Visible="false" Width="30px"></asp:TextBox>
                 </ItemTemplate>
                 

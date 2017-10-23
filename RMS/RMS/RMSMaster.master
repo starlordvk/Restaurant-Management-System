@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="RMSMaster.master.cs" Inherits="RMSMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="RMSMaster" Codebehind="RMSMaster.master.cs" %>
 
 <!DOCTYPE html>
 

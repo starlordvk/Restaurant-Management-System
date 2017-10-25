@@ -34,8 +34,14 @@ public partial class _Default : System.Web.UI.Page
     {
         //Flag to check if order is successful or not
         int order_successful_flag = 1;
+        //List to keep tab of dishes ordered and their quantity
+        List<string> dish_id_list = new List<String>();
+        List<int> dish_quantity_list = new List<int>();
+        List<int> dish_price_list = new List<int>();
         //Initializing the Confirmation Label Text
         confirmation_label.Text = "";
+        //Initializing the total amount for the bill
+        int total_amount = 0;
         //Iterating through each row of the gridview
         foreach(GridViewRow row in menu_gv.Rows)
         {
@@ -49,6 +55,13 @@ public partial class _Default : System.Web.UI.Page
                 //Get the quantity entered in the textbox
                 int quantity;
                 int.TryParse(tb.Text, out quantity);
+                //Adding to the total amount
+                total_amount += quantity * int.Parse(row.Cells[2].Text);
+                //Get the corresponding price of the dish
+                dish_price_list.Add(int.Parse(row.Cells[2].Text));
+                //Adding the dish_id and the dish_quantity
+                dish_id_list.Add(row.Cells[0].Text);
+                dish_quantity_list.Add(quantity);
                 //Creating the database connection
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);
                 SqlCommand cmd = new SqlCommand("SELECT ItemCode, Quantity FROM Dish_Items WHERE DishId = @DishId", con);
@@ -132,6 +145,63 @@ public partial class _Default : System.Web.UI.Page
         if (order_successful_flag == 1)
         {
             confirmation_label.Text = "<b>Order Placed</b>";
+
+            string bill_id = 'b' + RandomDigits(4);
+            DateTime bill_date = DateTime.Today;
+
+            //Enter the details into the Bills table
+            SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);
+            SqlCommand cmd4 = new SqlCommand("INSERT INTO Bills VALUES(@bill_id, @bill_date, @bill_amt)", con1);
+            cmd4.Parameters.AddWithValue("bill_id", bill_id);
+            cmd4.Parameters.AddWithValue("@bill_date", bill_date);
+            cmd4.Parameters.AddWithValue("@bill_amt", total_amount);
+
+            try
+            {
+                using (con1)
+                {
+                    con1.Open();
+                    cmd4.ExecuteNonQuery();
+                }
+            }
+            catch(Exception ex)
+            {
+                error_label_2.Text = "Inserting into Bills:" + ex.Message;
+            }
+
+            //Enter the details into the Bills_Dish table
+            SqlConnection con2 = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);
+            SqlCommand cmd5 = new SqlCommand("INSERT INTO Bills_Dish VALUES(@bill_id, @dish_id, @quantity, @amt)", con2);
+            try
+            {
+                using (con2)
+                {
+                    con2.Open();
+                    for (int x = 0; x < dish_id_list.Count; x++)
+                    {
+                        cmd5.Parameters.AddWithValue("@bill_id", bill_id);
+                        cmd5.Parameters.AddWithValue("@dish_id", dish_id_list[x]);
+                        cmd5.Parameters.AddWithValue("@quantity", dish_quantity_list[x]);
+                        cmd5.Parameters.AddWithValue("@amt", dish_quantity_list[x] * dish_price_list[x]);
+                        cmd5.ExecuteNonQuery();
+                        cmd5.Parameters.Clear();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                error_label_2.Text = "Inserting into Bills_Dish: " + ex.Message;
+            }
         }
+    }
+
+    //Generating random BillId
+    public string RandomDigits(int length)
+    {
+        var random = new Random();
+        string s = string.Empty;
+        for (int i = 0; i < length; i++)
+            s = String.Concat(s, random.Next(10).ToString());
+        return s;
     }
 }

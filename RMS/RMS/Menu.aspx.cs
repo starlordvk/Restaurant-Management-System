@@ -32,6 +32,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void menu_order_button_Click(object sender, EventArgs e)
     {
+        //Flag to check if order is successful or not
+        int order_successful_flag = 1;
+        //Initializing the Confirmation Label Text
+        confirmation_label.Text = "";
         //Iterating through each row of the gridview
         foreach(GridViewRow row in menu_gv.Rows)
         {
@@ -85,13 +89,31 @@ public partial class _Default : System.Web.UI.Page
                                     reader.Read();
                                     int old_quantity;
                                     int.TryParse(reader["Quantity"].ToString(), out old_quantity);
-                                    int revised_quantity = old_quantity - new_quantity;
-
-                                    using (SqlCommand cmd2 = new SqlCommand("UPDATE Items SET Quantity = @Quantity WHERE ItemCode = @ItemCode1", con))
+                                    //If available quantity is more than the required quantity
+                                    if ((new_quantity * quantity) <= old_quantity)
                                     {
-                                        cmd2.Parameters.AddWithValue("@Quantity", revised_quantity);
-                                        cmd2.Parameters.AddWithValue("@ItemCode1", item_code);
-                                        cmd2.ExecuteNonQuery();
+                                        int revised_quantity = old_quantity - (new_quantity * quantity);
+
+                                        using (SqlCommand cmd2 = new SqlCommand("UPDATE Items SET Quantity = @Quantity WHERE ItemCode = @ItemCode1", con))
+                                        {
+                                            cmd2.Parameters.AddWithValue("@Quantity", revised_quantity);
+                                            cmd2.Parameters.AddWithValue("@ItemCode1", item_code);
+                                            cmd2.ExecuteNonQuery();
+                                        }
+                                    }
+                                    //If available quantity is less than the required quantity
+                                    else if((new_quantity * quantity) > old_quantity)
+                                    {
+                                        order_successful_flag = 0;
+                                        using (SqlCommand cmd3 = new SqlCommand("SELECT Name FROM Items WHERE ItemCode = @ItemCode", con))
+                                        {
+                                            cmd3.Parameters.AddWithValue("@ItemCode", item_code);
+                                            using (SqlDataReader reader2 = cmd3.ExecuteReader())
+                                            {
+                                                reader2.Read();
+                                                confirmation_label.Text += "Not much " + reader2["Name"].ToString() + " left" + "<br/>";
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -107,6 +129,9 @@ public partial class _Default : System.Web.UI.Page
             }
         }
         //Confirmation of Order Placed
-        confirmation_label.Text = "<b>Order Placed</b>";
+        if (order_successful_flag == 1)
+        {
+            confirmation_label.Text = "<b>Order Placed</b>";
+        }
     }
 }

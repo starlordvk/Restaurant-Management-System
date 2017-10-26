@@ -21,6 +21,7 @@
                         <asp:MenuItem NavigateUrl="~/OrderPage.aspx" Text="Order"/>
                         <asp:MenuItem NavigateUrl="~/BillsPage.aspx" Text="Bills" />
                         <asp:MenuItem NavigateUrl="~/Menu.aspx" Text="Menu"/>
+                        <asp:MenuItem NavigateUrl="~/Receipts.aspx" Text="Receipts" />
                     </Items>
           </asp:Menu>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">

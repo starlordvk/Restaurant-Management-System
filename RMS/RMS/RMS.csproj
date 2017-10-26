@@ -82,6 +82,7 @@
     <Content Include="obj\Debug\RMS.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\RMS.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />
+    <Content Include="Receipts.aspx" />
     <Content Include="RMSMaster.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -186,6 +187,13 @@
       <DependentUpon>OrderPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receipts.aspx.cs">
+      <DependentUpon>Receipts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Receipts.aspx.designer.cs">
+      <DependentUpon>Receipts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RMSMaster.master.cs">
       <DependentUpon>RMSMaster.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

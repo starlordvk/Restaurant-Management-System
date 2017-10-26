@@ -147,7 +147,7 @@ public partial class _Default : System.Web.UI.Page
             confirmation_label.Text = "<b>Order Placed</b>";
 
             string bill_id = 'b' + RandomDigits(4);
-            DateTime bill_date = DateTime.Today;
+            DateTime bill_date = DateTime.Now;
 
             //Enter the details into the Bills table
             SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);

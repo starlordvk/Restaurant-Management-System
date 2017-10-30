@@ -76,13 +76,16 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="images\RMS.png" />
     <Content Include="Menu.aspx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\RMS.csproj.CopyComplete" />
     <Content Include="obj\Debug\RMS.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\RMS.csprojResolveAssemblyReference.cache" />
+    <Content Include="App_Themes\Light\Light.skin" />
     <None Include="packages.config" />
     <Content Include="Receipts.aspx" />
+    <Content Include="RegisterPage.aspx" />
     <Content Include="RMSMaster.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -193,6 +196,13 @@
     </Compile>
     <Compile Include="Receipts.aspx.designer.cs">
       <DependentUpon>Receipts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterPage.aspx.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisterPage.aspx.designer.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="RMSMaster.master.cs">
       <DependentUpon>RMSMaster.master</DependentUpon>

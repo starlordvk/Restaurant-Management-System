@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,11 +20,54 @@ namespace RMS
         //Function to Handle Button Click
         protected void ShowHomePage(object sender, EventArgs e)
         {
-            //Transfers to Home Page if all the Login Fields are valid
-            if(Page.IsValid)
+            string userid = username_tb.Text;
+            string password = password_tb.Text;
+            int flag = 0;
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString);
+            DataSet ds = new DataSet();
+            using (con)
             {
-                Response.Redirect("HomePage.aspx");
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT UserId, Password FROM Users", con))
+                    {
+                        SqlDataAdapter ad = new SqlDataAdapter(cmd);
+                        ad.Fill(ds, "User_Detail");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    error_label.Text = ex.Message;
+                }
             }
+
+            foreach(DataRow row in ds.Tables["User_Detail"].Rows)
+            {
+                if(userid == row["UserId"].ToString() && password == row["Password"].ToString())
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+
+            if(flag == 0)
+            {
+                error_label.Text = "UserId or Password does not match";
+            }
+            else
+            {
+                if(Page.IsValid)
+                {
+                    Response.Redirect("HomePage.aspx");
+                }
+            }
+        }
+
+        protected void register_user_button_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegisterPage.aspx");
         }
 
         //Custom Password Validation Function

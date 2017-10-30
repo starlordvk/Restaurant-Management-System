@@ -219,3 +219,7 @@ C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Managem
 C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Management-System\RMS\RMS\obj\Debug\RMS.csproj.CoreCompileInputs.cache
 C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Management-System\RMS\RMS\obj\Debug\RMS.dll
 C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Management-System\RMS\RMS\obj\Debug\RMS.pdb
+C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Management-System\RMS\RMS\bin\RMS.dll.config
+C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Management-System\RMS\RMS\bin\RMS.dll
+C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Management-System\RMS\RMS\bin\RMS.pdb
+C:\Gaurav\Projects\Restaurant Management System using ASP.NET\Restaurant-Management-System\RMS\RMS\obj\Debug\RMS.csprojResolveAssemblyReference.cache

@@ -49,6 +49,24 @@ namespace RMS {
         protected global::System.Web.UI.WebControls.Button login_button;
         
         /// <summary>
+        /// register_user_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button register_user_button;
+        
+        /// <summary>
+        /// error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label error_label;
+        
+        /// <summary>
         /// rfv_username control.
         /// </summary>
         /// <remarks>
@@ -65,23 +83,5 @@ namespace RMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_password;
-        
-        /// <summary>
-        /// compv_username control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compv_username;
-        
-        /// <summary>
-        /// compv_password control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compv_password;
     }
 }

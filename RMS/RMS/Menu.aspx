@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSMaster.master" AutoEventWireup="true" Inherits="_Default" Codebehind="Menu.aspx.cs" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSMaster.master" AutoEventWireup="True" Inherits="_Default" Codebehind="Menu.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -28,7 +28,7 @@
     <br />
     <asp:Label runat="server" ID="error_label_2"></asp:Label>
 
-    <asp:SqlDataSource ID="MenuSqlDataSource" runat="server" SelectCommand="SELECT * from Dishes" ConnectionString="<%$ConnectionStrings:Restaurant %>" UpdateCommand="UPDATE Dishes SET Price = @Price WHERE DishId = @DishId">
+    <asp:SqlDataSource ID="MenuSqlDataSource" runat="server" SelectCommand="SELECT * from Dish" ConnectionString="<%$ConnectionStrings:Restaurant %>" UpdateCommand="UPDATE Dishes SET Price = @Price WHERE DishId = @DishId">
         <UpdateParameters>
             <asp:ControlParameter ControlID="menu_gv" Name="Price" />
             <asp:ControlParameter ControlID="menu_gv" Name="DishId" />

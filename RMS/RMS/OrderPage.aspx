@@ -22,6 +22,7 @@
                     <asp:CheckBox ID="SelectItem" runat="server" AutoPostBack="true" OnCheckedChanged="SelectItem_CheckedChanged"/>
                    
                     <asp:TextBox ID="SelectedItemQuantity" runat="server" Visible="false" Width="30px"></asp:TextBox>
+                    <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Please enter a valid quantity" ControlToValidate="SelectedItemQuantity" MaximumValue="50" MinimumValue="1" Type="Integer" ForeColor="Red"></asp:RangeValidator>
                 </ItemTemplate>
                 
             </asp:TemplateField>

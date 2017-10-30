@@ -12,6 +12,7 @@
                 <ItemTemplate>
                     <asp:CheckBox runat="server" ID="order_cb" OnCheckedChanged="order_cb_CheckedChanged" AutoPostBack="true" />
                     <asp:TextBox runat="server" ID="order_tb" Width="30px" Visible="false"></asp:TextBox>
+                    <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Please enter a valid quantity" ControlToValidate="order_tb" MaximumValue="10" MinimumValue="1" Type="Integer" ForeColor="Red"></asp:RangeValidator>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CommandField ShowEditButton="true" EditText="Change Price" />
@@ -27,7 +28,7 @@
     <br />
     <asp:Label runat="server" ID="error_label_2"></asp:Label>
 
-    <asp:SqlDataSource ID="MenuSqlDataSource" runat="server" SelectCommand="SELECT * from Dish" ConnectionString="<%$ConnectionStrings:Restaurant %>" UpdateCommand="UPDATE Dish SET Price = @Price WHERE DishId = @DishId">
+    <asp:SqlDataSource ID="MenuSqlDataSource" runat="server" SelectCommand="SELECT * from Dishes" ConnectionString="<%$ConnectionStrings:Restaurant %>" UpdateCommand="UPDATE Dishes SET Price = @Price WHERE DishId = @DishId">
         <UpdateParameters>
             <asp:ControlParameter ControlID="menu_gv" Name="Price" />
             <asp:ControlParameter ControlID="menu_gv" Name="DishId" />

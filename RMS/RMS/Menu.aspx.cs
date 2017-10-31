@@ -38,6 +38,9 @@ public partial class _Default : System.Web.UI.Page
         List<string> dish_id_list = new List<String>();
         List<int> dish_quantity_list = new List<int>();
         List<int> dish_price_list = new List<int>();
+        //List to keep tab of what items need to be ordered
+        List<string> item_id_list = new List<string>();
+        List<int> item_quantity_list = new List<int>();
         //Initializing the Confirmation Label Text
         confirmation_label.Text = "";
         //Initializing the total amount for the bill
@@ -118,6 +121,8 @@ public partial class _Default : System.Web.UI.Page
                                     else if((new_quantity * quantity) > old_quantity)
                                     {
                                         order_successful_flag = 0;
+                                        item_id_list.Add(item_code);
+                                        item_quantity_list.Add((new_quantity * quantity) - old_quantity);
                                         using (SqlCommand cmd3 = new SqlCommand("SELECT Name FROM Items WHERE ItemCode = @ItemCode", con))
                                         {
                                             cmd3.Parameters.AddWithValue("@ItemCode", item_code);
@@ -192,6 +197,86 @@ public partial class _Default : System.Web.UI.Page
             {
                 error_label_2.Text = "Inserting into Bills_Dish: " + ex.Message;
             }
+        }
+        else if(order_successful_flag == 0)
+        {
+            List<int> item_price_list = new List<int>();
+            string order_id = "o" + RandomDigits(4);
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT Price FROM Items WHERE ItemCode = @ItemCode", con))
+                    {
+                        foreach(string item_id in item_id_list)
+                        {
+                            cmd.Parameters.AddWithValue("@ItemCode", item_id);
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                reader.Read();
+                                item_price_list.Add(int.Parse(reader["Price"].ToString()));
+                            }
+                            cmd.Parameters.Clear();
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    error_label_2.Text = ex.Message;
+                }
+            }
+
+            int total_order_amount = 0;
+            for(int i = 0; i < item_id_list.Count; i++)
+            {
+                total_order_amount += item_quantity_list[i] * item_price_list[i];
+            }
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO [Order] VALUES(@OrderId, @Date, @Amount, @Complete)", con))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderId", order_id);
+                        cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@Amount", total_order_amount);
+                        cmd.Parameters.AddWithValue("@Complete", 0);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    error_label_2.Text = ex.Message;
+                }
+            }
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Order_Items VALUES(@OrderId, @ItemCode, @Quantity)", con))
+                    {
+                        for(int i = 0; i < item_id_list.Count; i++)
+                        {
+                            cmd.Parameters.AddWithValue("@OrderId", order_id);
+                            cmd.Parameters.AddWithValue("@ItemCode", item_id_list[i]);
+                            cmd.Parameters.AddWithValue("@Quantity", item_quantity_list[i]);
+                            cmd.ExecuteNonQuery();
+                            cmd.Parameters.Clear();
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    error_label_2.Text = ex.Message;
+                }
+            }
+            confirmation_label.Text += "<b>Orders have been placed for these items</b>";
         }
     }
 

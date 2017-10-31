@@ -14,7 +14,7 @@
             <asp:CommandField ShowSelectButton="true" SelectText="Expand" />
         </Columns>
     </asp:GridView>
-
+    <br /><br />
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ConnectionStrings:Restaurant %>" SelectCommand="Select ItemCode, Quantity from Order_Items where OrderId=@OrderId" OnSelecting="SqlDataSource2_Selecting" OnSelected="SqlDataSource2_Selected" >
         <SelectParameters>
             <asp:ControlParameter ControlID="GridView1" Name="OrderId" PropertyName="SelectedDataKey.Value" />

@@ -23,7 +23,7 @@
                    
                     <asp:TextBox ID="SelectedItemQuantity" runat="server" Visible="false" Width="30px"></asp:TextBox>
 <<<<<<< HEAD
-                    <asp:RangeValidator runat="server" ErrorMessage="Please enter a valid quantity" ControlToValidate="SelectedItemQuantity" MinValue="1" MaxValue="50" Type="Integer" ForeColor="Red"></asp:RangeValidator>
+                    <asp:RangeValidator runat="server" ErrorMessage="Please enter a valid quantity" ControlToValidate="SelectedItemQuantity" MinimumValue="1" MaximumValue="50" Type="Integer" ForeColor="Red"></asp:RangeValidator>
 =======
                     <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Please enter a valid quantity" ControlToValidate="SelectedItemQuantity" MaximumValue="50" MinimumValue="1" Type="Integer" ForeColor="Red"></asp:RangeValidator>
 >>>>>>> 4eebc88138017530a9104fd89ee628d9dcb8bc64

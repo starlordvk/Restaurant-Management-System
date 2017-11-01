@@ -2,10 +2,10 @@
 
 }
 .Header {
-    top: 10px;
-    left: 10px;
-    height: 60px;
-    text-align: center;
+    position:absolute;
+    left:120px;
+    top:35px;
+    font-family:Calibri;
 }
 
 .Footer {
@@ -16,4 +16,22 @@
     text-align: left;
 }
 
+.menuMaster {
+    color: Green;
+}
+
+.menuMaster a.static.highlighted {
+        color: Red !important;
+}
+
+.menuMaster a.static.selected {
+        color: Red !important;
+        border-top: Red 1px solid !important;
+        border-left: Red 1px solid !important;
+        border-right: Red 1px solid !important;
+}
+
+body {
+    background-color: #dddddd;
+}
 

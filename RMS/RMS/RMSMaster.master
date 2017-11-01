@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="True" Inherits="RMSMaster" Codebehind="RMSMaster.master.cs" %>
+﻿<%@ Master Language="C#" AutoEventWireup="True" Inherits="RMSMaster" CodeFile="RMSMaster.master.cs"%>
 
 <!DOCTYPE html>
 
@@ -11,15 +11,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="masterDiv">
         <asp:Image ID="Image1" runat="server" ImageUrl="~/images/RMS.png" Height="100px" Width="100px"/>
-        <br />
-        <br />
         <asp:Label ID="Label1" runat="server" Text="Restaurant Management System" Font-Size="XX-Large" CssClass="Header"></asp:Label>
-        
+
         <br />
-        <br />
-        <asp:Menu ID="NavigationMenu" runat="server" CssClass="" EnableViewState="false" IncludeStyleBlock="true" Orientation="Horizontal" Font-Size="X-Large">
+        <asp:Menu ID="NavigationMenu" runat="server" CssClass="menuMaster" EnableViewState="false" IncludeStyleBlock="true" Orientation="Horizontal" Font-Size="X-Large" StaticMenuStyle-CssClass="StaticMenuStyle"
+        StaticMenuItemStyle-CssClass="StaticMenuItemStyle">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/HomePage.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/OrderPage.aspx" Text="Order"/>

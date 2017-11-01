@@ -1,0 +1,10 @@
+﻿<asp:GridView runat="server">
+    <HeaderStyle BackColor="#333333" ForeColor="#FF9900" />
+    
+    <PagerStyle ForeColor="#FF9900" BackColor="#333333" />
+
+   
+
+</asp:GridView>
+
+<asp:Button  runat="server" BackColor="#FF9900" ForeColor="#333333"  />

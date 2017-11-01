@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSMaster.master" AutoEventWireup="True" Inherits="OrderPage" Codebehind="OrderPage.aspx.cs" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSMaster.master" AutoEventWireup="True" Inherits="OrderPage" Codebehind="OrderPage.aspx.cs" Theme="Dark" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -11,7 +11,10 @@
 
     <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="ItemCode" EnablePersistedSelection="true" 
         AutoGenerateColumns="false" AllowPaging="true" AllowSorting="true" >
+        <HeaderStyle />
+        <PagerStyle />
         <Columns>
+           
             <asp:BoundField DataField="ItemCode" HeaderText="Code" ReadOnly="true" />
             <asp:BoundField DataField="Name" HeaderText="Name" ReadOnly="true" />
             <asp:BoundField DataField="Price" HeaderText="Price" />
@@ -22,11 +25,11 @@
                     <asp:CheckBox ID="SelectItem" runat="server" AutoPostBack="true" OnCheckedChanged="SelectItem_CheckedChanged"/>
                    
                     <asp:TextBox ID="SelectedItemQuantity" runat="server" Visible="false" Width="30px"></asp:TextBox>
-<<<<<<< HEAD
+
                     <asp:RangeValidator runat="server" ErrorMessage="Please enter a valid quantity" ControlToValidate="SelectedItemQuantity" MinimumValue="1" MaximumValue="50" Type="Integer" ForeColor="Red"></asp:RangeValidator>
-=======
+
                     <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Please enter a valid quantity" ControlToValidate="SelectedItemQuantity" MaximumValue="50" MinimumValue="1" Type="Integer" ForeColor="Red"></asp:RangeValidator>
->>>>>>> 4eebc88138017530a9104fd89ee628d9dcb8bc64
+
                 </ItemTemplate>
                 
             </asp:TemplateField>

@@ -15,7 +15,13 @@ namespace RMS
         protected void Page_Load(object sender, EventArgs e)
         {
             receipts_dishes_gv.Visible = false;
+            
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+           
+        }
+
 
         protected void select_receipt_cb_CheckedChanged(object sender, EventArgs e)
         {

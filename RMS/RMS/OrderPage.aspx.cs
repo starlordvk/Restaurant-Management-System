@@ -17,6 +17,9 @@ public partial class OrderPage : System.Web.UI.Page
     {
 
     }
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+    }
 
     protected void SelectItem_CheckedChanged(object sender, EventArgs e)
     {

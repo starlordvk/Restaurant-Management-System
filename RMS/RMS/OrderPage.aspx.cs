@@ -19,6 +19,10 @@ public partial class OrderPage : System.Web.UI.Page
     }
     protected void Page_PreInit(object sender, EventArgs e)
     {
+        if (Session["theme"] != null)
+        {
+            Page.Theme = Session["theme"].ToString();
+        }
     }
 
     protected void SelectItem_CheckedChanged(object sender, EventArgs e)
@@ -45,6 +49,10 @@ public partial class OrderPage : System.Web.UI.Page
 
     protected void PlaceOrderButton_Click(object sender, EventArgs e)
     {
+        List<string> item_id_list = new List<string>();
+        List<int> item_quantity_list = new List<int>();
+        List<int> item_existing_quantity_list = new List<int>();
+
         int orderAmount = 0;
         foreach(GridViewRow row in GridView1.Rows)
         {
@@ -56,6 +64,9 @@ public partial class OrderPage : System.Web.UI.Page
                 TextBox tb = (TextBox)row.FindControl("SelectedItemQuantity");
                 int quantity;
                 int.TryParse(tb.Text, out quantity);
+
+                item_id_list.Add(row.Cells[0].Text);
+                item_quantity_list.Add(quantity);
                 
                 //Adding Itemcode and quantity
                 itemOrdered.Add(row.Cells[0].Text, quantity);
@@ -119,6 +130,53 @@ public partial class OrderPage : System.Web.UI.Page
             }
 
 
+        }
+
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
+        {
+            try
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT Quantity FROM Items WHERE ItemCode = @ItemCode", connection))
+                {
+                    for(int i = 0; i < item_id_list.Count; i++)
+                    {
+                        command.Parameters.AddWithValue("@ItemCode", item_id_list[i]);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            item_existing_quantity_list.Add(int.Parse(reader["Quantity"].ToString()));
+                        }
+                        command.Parameters.Clear();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                error_label.Text = ex.Message;
+            }
+        }
+
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
+        {
+            try
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("UPDATE Items SET Quantity = @Quantity WHERE ItemCode = @ItemCode", connection))
+                {
+                    for (int i = 0; i < item_id_list.Count; i++)
+                    {
+                        command.Parameters.AddWithValue("@Quantity",  item_existing_quantity_list[i] + item_quantity_list[i]);
+                        command.Parameters.AddWithValue("@ItemCode", item_id_list[i]);
+                        command.ExecuteNonQuery();
+                        command.Parameters.Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                error_label.Text = ex.Message;
+            }
         }
 
     }

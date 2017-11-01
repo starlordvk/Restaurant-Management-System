@@ -83,6 +83,7 @@
     <Content Include="obj\Debug\RMS.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\RMS.csprojResolveAssemblyReference.cache" />
     <Content Include="App_Themes\Light\Light.skin" />
+    <Content Include="App_Themes\Dark\Dark.skin" />
     <None Include="packages.config" />
     <Content Include="Receipts.aspx" />
     <Content Include="RegisterPage.aspx" />

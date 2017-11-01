@@ -16,6 +16,20 @@
     text-align: left;
 }
 
+.ThemeDropDown{
+    position: absolute;
+    right: 200px;
+    top: 35px;
+    font-family: Calibri;
+}
+
+.LogoutButton {
+    position: absolute;
+    right: 100px;
+    top: 35px;
+    font-family: Calibri;
+}
+
 .menuMaster {
     color: Green;
 }

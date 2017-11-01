@@ -16,7 +16,10 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void Page_PreInit(object sender, EventArgs e)
     {
-       
+        if (Session["theme"] != null)
+        {
+            Page.Theme = Session["theme"].ToString();
+        }
     }
 
 
@@ -206,6 +209,8 @@ public partial class _Default : System.Web.UI.Page
         else if(order_successful_flag == 0)
         {
             List<int> item_price_list = new List<int>();
+            List<int> item_existing_quantity_list = new List<int>();
+
             string order_id = "o" + RandomDigits(4);
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
@@ -244,13 +249,18 @@ public partial class _Default : System.Web.UI.Page
                 try
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO [Order] VALUES(@OrderId, @Date, @Amount, @Complete)", con))
+                    using (SqlCommand cmd = new SqlCommand("SELECT Quantity FROM Items WHERE ItemCode = @ItemCode", con))
                     {
-                        cmd.Parameters.AddWithValue("@OrderId", order_id);
-                        cmd.Parameters.AddWithValue("@Date", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@Amount", total_order_amount);
-                        cmd.Parameters.AddWithValue("@Complete", 0);
-                        cmd.ExecuteNonQuery();
+                        for (int i = 0; i < item_id_list.Count; i++)
+                        {
+                            cmd.Parameters.AddWithValue("@ItemCode", item_id_list[i]);
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                reader.Read();
+                                item_existing_quantity_list.Add(int.Parse(reader["Quantity"].ToString()));
+                            }
+                            cmd.Parameters.Clear();
+                        }
                     }
                 }
                 catch(Exception ex)
@@ -264,9 +274,51 @@ public partial class _Default : System.Web.UI.Page
                 try
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Order_Items VALUES(@OrderId, @ItemCode, @Quantity)", con))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Items SET Quantity = @Quantity WHERE ItemCode = @ItemCode", con))
                     {
                         for(int i = 0; i < item_id_list.Count; i++)
+                        {
+                            cmd.Parameters.AddWithValue("@Quantity", item_existing_quantity_list[i] + item_quantity_list[i]);
+                            cmd.Parameters.AddWithValue("@ItemCode", item_id_list[i]);
+                            cmd.ExecuteNonQuery();
+                            cmd.Parameters.Clear();
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    error_label_2.Text = ex.Message;
+                }
+            }
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO [Order] VALUES(@OrderId, @Date, @Amount, @Complete)", con))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderId", order_id);
+                        cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@Amount", total_order_amount);
+                        cmd.Parameters.AddWithValue("@Complete", 0);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    error_label_2.Text = ex.Message;
+                }
+            }
+            
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Order_Items VALUES(@OrderId, @ItemCode, @Quantity)", con))
+                    {
+                        for (int i = 0; i < item_id_list.Count; i++)
                         {
                             cmd.Parameters.AddWithValue("@OrderId", order_id);
                             cmd.Parameters.AddWithValue("@ItemCode", item_id_list[i]);
@@ -276,7 +328,7 @@ public partial class _Default : System.Web.UI.Page
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     error_label_2.Text = ex.Message;
                 }

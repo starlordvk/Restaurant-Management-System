@@ -9,7 +9,34 @@
 
 
 
-public partial class OrderPage {
+public partial class RMSMaster {
+    
+    /// <summary>
+    /// head control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+    
+    /// <summary>
+    /// form1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+    
+    /// <summary>
+    /// Image1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Image Image1;
     
     /// <summary>
     /// Label1 control.
@@ -21,47 +48,47 @@ public partial class OrderPage {
     protected global::System.Web.UI.WebControls.Label Label1;
     
     /// <summary>
-    /// SqlDataSource1 control.
+    /// theme_ddl control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+    protected global::System.Web.UI.WebControls.DropDownList theme_ddl;
     
     /// <summary>
-    /// GridView1 control.
+    /// logout_button control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.GridView GridView1;
+    protected global::System.Web.UI.WebControls.Button logout_button;
     
     /// <summary>
-    /// PlaceOrderButton control.
+    /// NavigationMenu control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button PlaceOrderButton;
+    protected global::System.Web.UI.WebControls.Menu NavigationMenu;
     
     /// <summary>
-    /// GridView2 control.
+    /// ContentPlaceHolder1 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.GridView GridView2;
+    protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     
     /// <summary>
-    /// error_label control.
+    /// label2 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label error_label;
+    protected global::System.Web.UI.WebControls.Label label2;
 }

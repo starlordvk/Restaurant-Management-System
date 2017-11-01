@@ -41,6 +41,8 @@
     <asp:Button ID="PlaceOrderButton" runat="server" Text="Place Order" OnClick="PlaceOrderButton_Click" />
     <br />
     <asp:GridView ID="GridView2" runat="server"></asp:GridView>
+    <br /><br />
+    <asp:Label ID="error_label" runat="server"></asp:Label>
   
     
 </asp:Content>

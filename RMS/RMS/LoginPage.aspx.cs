@@ -17,6 +17,14 @@ namespace RMS
 
         }
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["theme"] != null)
+            {
+                Page.Theme = Session["theme"].ToString();
+            }
+        }
+
         //Function to Handle Button Click
         protected void ShowHomePage(object sender, EventArgs e)
         {

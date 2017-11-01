@@ -10,4 +10,49 @@
 
 
 public partial class HomePage {
+    
+    /// <summary>
+    /// total_items_ordered_label control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label total_items_ordered_label;
+    
+    /// <summary>
+    /// total_dishes_ordered_label control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label total_dishes_ordered_label;
+    
+    /// <summary>
+    /// total_spendings_label control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label total_spendings_label;
+    
+    /// <summary>
+    /// total_earnings_label control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label total_earnings_label;
+    
+    /// <summary>
+    /// error_label control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label error_label;
 }

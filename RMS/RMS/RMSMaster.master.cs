@@ -11,6 +11,7 @@ public partial class RMSMaster : System.Web.UI.MasterPage
     {   
         if(!this.IsPostBack)
         {
+            theme_ddl.Items.Add("Select Theme");
             theme_ddl.Items.Add("Dark");
             theme_ddl.Items.Add("Light");
 
@@ -39,6 +40,6 @@ public partial class RMSMaster : System.Web.UI.MasterPage
 
     protected void Logout(object sender, EventArgs e)
     {
-
+        Response.Redirect("LoginPage.aspx");
     }
 }

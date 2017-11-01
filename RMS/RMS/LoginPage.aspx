@@ -18,11 +18,11 @@
             <asp:TextBox runat="server" ID="username_tb"></asp:TextBox>
             <br /><br />
             <!-- Label and TextBox for Password-->
-            <asp:Label runat="server" Text="Password: "></asp:Label>
+            <asp:Label runat="server" Text="Password: " style="margin-right: 5px;"></asp:Label>
             <asp:TextBox runat="server" ID="password_tb" TextMode="Password"></asp:TextBox>
             <br /><br />
             <!-- Login Button -->
-            <asp:Button runat="server" ID="login_button" Text="Login" OnClick="ShowHomePage" style="padding-right: 20px"/>
+            <asp:Button runat="server" ID="login_button" Text="Login" OnClick="ShowHomePage" style="margin-right: 70px"/>
             <asp:Button runat="server" ID="register_user_button" Text="Register User" OnClick="register_user_button_Click" CausesValidation="false"/>
             <br /><br />
             <asp:Label runat="server" ID="error_label"></asp:Label>

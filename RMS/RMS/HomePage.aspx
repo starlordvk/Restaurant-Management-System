@@ -3,11 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:label runat="server" text="Available Balance = "></asp:label>
-     <br />
-    <%--<asp:label runat="server" text="Growth/Profit = "></asp:label>--%>
-     <br />
-    <asp:label runat="server" text="Miscellaneous = "></asp:label>
-     <br />
+    <asp:Label ID="total_items_ordered_label" runat="server"></asp:Label>
+     <br /><br />
+    <asp:Label ID="total_dishes_ordered_label" runat="server"></asp:Label>
+     <br /><br />
+    <asp:Label ID="total_spendings_label" runat="server"></asp:Label>
+    <br /><br />
+    <asp:Label ID="total_earnings_label" runat="server"></asp:Label>
+    <br /><br />
+    <asp:Label ID="error_label" runat="server"></asp:Label>
 </asp:Content>
 

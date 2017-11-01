@@ -12,6 +12,15 @@
 public partial class HomePage {
     
     /// <summary>
+    /// statistics_gv control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.GridView statistics_gv;
+    
+    /// <summary>
     /// total_items_ordered_label control.
     /// </summary>
     /// <remarks>

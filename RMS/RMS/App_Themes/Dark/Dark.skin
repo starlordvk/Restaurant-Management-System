@@ -3,8 +3,11 @@
     
     <PagerStyle ForeColor="#FF9900" BackColor="#333333" />
 
+    <RowStyle ForeColor="#FF9900" BackColor="#333333" />
    
 
 </asp:GridView>
 
-<asp:Button  runat="server" BackColor="#FF9900" ForeColor="#333333"  />
+<asp:Button  runat="server" BackColor="#000000" ForeColor="#FF9900" />
+<asp:Label runat="server" ForeColor="#FF9900" />
+<asp:DropDownList runat="server" BackColor="#000000" ForeColor="#FF9900" />

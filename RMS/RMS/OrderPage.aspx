@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Label ID="Label1" runat="server" Text="Welcome to order page"></asp:Label>
+    <!--<asp:Label ID="Label1" runat="server" Text="Welcome to order page"></asp:Label> -->7
     <br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ProviderName="System.Data.SqlClient" SelectCommand="Select * from Items" 
         UpdateCommand="Update Items set Price=@Price where ItemCode=@ItemCode"

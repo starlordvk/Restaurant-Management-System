@@ -17,6 +17,10 @@ public partial class HomePage : System.Web.UI.Page
         int total_spendings = 0;
         int total_earnings = 0;
 
+        DataTable table = new DataTable();
+        table.Columns.Add("Statistics", typeof(string));
+        table.Columns.Add("Numbers", typeof(int));
+
         using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Restaurant"].ConnectionString))
         {
             try
@@ -26,8 +30,14 @@ public partial class HomePage : System.Web.UI.Page
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        DataRow row = table.NewRow();
+
                         reader.Read();
                         total_items_ordered = int.Parse(reader["Total"].ToString());
+
+                        row["Statistics"] = "Total Items Ordered";
+                        row["Numbers"] = total_items_ordered;
+                        table.Rows.Add(row);
                     }
                 }
 
@@ -35,8 +45,14 @@ public partial class HomePage : System.Web.UI.Page
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        DataRow row = table.NewRow();
+
                         reader.Read();
                         total_dishes_ordered = int.Parse(reader["Total"].ToString());
+
+                        row["Statistics"] = "Total Dishes Ordered";
+                        row["Numbers"] = total_dishes_ordered;
+                        table.Rows.Add(row);
                     }
                 }
 
@@ -44,8 +60,14 @@ public partial class HomePage : System.Web.UI.Page
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        DataRow row = table.NewRow();
+
                         reader.Read();
                         total_spendings = int.Parse(reader["Total"].ToString());
+
+                        row["Statistics"] = "Total Spendings";
+                        row["Numbers"] = total_spendings;
+                        table.Rows.Add(row);
                     }
                 }
 
@@ -53,8 +75,14 @@ public partial class HomePage : System.Web.UI.Page
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        DataRow row = table.NewRow();
+
                         reader.Read();
                         total_earnings = int.Parse(reader["Total"].ToString());
+
+                        row["Statistics"] = "Total Earnings";
+                        row["Numbers"] = total_earnings;
+                        table.Rows.Add(row);
                     }
                 }
             }
@@ -64,10 +92,8 @@ public partial class HomePage : System.Web.UI.Page
             }
         }
 
-        total_dishes_ordered_label.Text = "Total Dishes Ordered: " + total_dishes_ordered.ToString();
-        total_items_ordered_label.Text = "Total Items Ordered: " + total_items_ordered.ToString();
-        total_earnings_label.Text = "Total Earnings: " + total_earnings.ToString();
-        total_spendings_label.Text = "Total Spendings: " + total_spendings.ToString(); 
+        statistics_gv.DataSource = table;
+        statistics_gv.DataBind();
     }
 
     protected void Page_PreInit(object sender, EventArgs e)

@@ -1,1 +1,13 @@
-﻿<asp:Label runat="server" Font-Size="XX-Large" ForeColor="BlueViolet"/>
+﻿<asp:GridView runat="server">
+    <HeaderStyle BackColor="#CCCCCC" ForeColor="#996699" />
+    
+    <PagerStyle ForeColor="#996699" BackColor="#CCCCCC" />
+
+    <RowStyle ForeColor="#006699" BackColor="#CCCCCC" />
+   
+
+</asp:GridView>
+
+<asp:Button  runat="server" BackColor="#CCCCCC" ForeColor="#006699" />
+<asp:Label runat="server" ForeColor="#996699" />
+<asp:DropDownList runat="server" BackColor="#CCCCCC" ForeColor="#996699" />

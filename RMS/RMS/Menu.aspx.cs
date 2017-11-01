@@ -12,8 +12,13 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+       
+    }
+
 
     protected void order_cb_CheckedChanged(object sender, EventArgs e)
     {

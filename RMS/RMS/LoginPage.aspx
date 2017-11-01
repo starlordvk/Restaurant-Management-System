@@ -11,7 +11,7 @@
     <form id="form1" runat="server" class="LoginClass">
         <div>
             <!--Label for Administrator Login -->
-            <asp:Label runat="server" Text="Adminstrator Login"></asp:Label>
+            <asp:Label runat="server" Text="Adminstrator Login" CssClass="LoginUserName"></asp:Label>
             <br /><br />
             <!-- Label and TextBox for Username -->
             <asp:Label runat="server" Text="Username: "></asp:Label>
